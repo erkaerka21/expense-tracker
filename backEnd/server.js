@@ -7,16 +7,19 @@ const { logger } = require("./middlewares/logger");
 dotenv.config(); //.env tei file uudtai ajilladag. config .env file iig duudaj ajillasanaar process.env.PORT ajillana.
 
 const userRouter = require("./routes/user-route");
-
+const categoryRouter = require("./routes/category-route");
+const ordersRouter = require("./routes/orders-route");
 const PORT = process.env.PORT; //zuvhun ajillaj baih ued portiig avna.
 
-const app = express();
+const app = express(); // json data g object bolgon requestiin body ruu oruuldag.
 
 app.use(express.json()); // middleware client talaas body dotor irj json iig object bolgono.
-app.use(cors()); //haanaas ch handaj bolno widdleware. haanaas ch manin server ruu handaj bolno.
+app.use(cors()); //local host hedees ch handaj bolno widdleware. haanaas ch manin server ruu handaj bolno.
 app.use(logger());
 
 app.use("/users", userRouter);
+app.use("/category", categoryRouter);
+app.use("/orderuud", ordersRouter);
 
 app.listen(PORT, () => {
   console.log(`server iin ajillaj bga host ${PORT}`);

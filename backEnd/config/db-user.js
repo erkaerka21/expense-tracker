@@ -1,10 +1,10 @@
-const postgreUser = require("postgres");
+const postgre = require("postgres");
 
 require("dotenv").config();
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-const sqlUser = postgreUser({
+const sql = postgre({
   host: PGHOST,
   database: PGDATABASE,
   username: PGUSER,
@@ -16,4 +16,4 @@ const sqlUser = postgreUser({
   },
 });
 
-module.exports = sqlUser;
+module.exports = sql;
