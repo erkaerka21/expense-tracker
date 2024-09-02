@@ -9,6 +9,12 @@ const SignIn = () => {
             <img src="Vector.png" className="h-[25px]" />
             Geld
           </div>
+          <div>
+            <h1>
+              <strong>Welcome back</strong>
+            </h1>
+            <h2>Welcome back, Please enter your details</h2>
+          </div>
         </div>
       </div>
     </div>

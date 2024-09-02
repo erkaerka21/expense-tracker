@@ -9,6 +9,7 @@ dotenv.config(); //.env tei file uudtai ajilladag. config .env file iig duudaj a
 const userRouter = require("./routes/user-route");
 const categoryRouter = require("./routes/category-route");
 const ordersRouter = require("./routes/orders-route");
+const authRouter = require("./routes/auth-route");
 const PORT = process.env.PORT; //zuvhun ajillaj baih ued portiig avna.
 
 const app = express(); // json data g object bolgon requestiin body ruu oruuldag.
@@ -20,6 +21,7 @@ app.use(logger());
 app.use("/users", userRouter);
 app.use("/category", categoryRouter);
 app.use("/orderuud", ordersRouter);
+app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`server iin ajillaj bga host ${PORT}`);
