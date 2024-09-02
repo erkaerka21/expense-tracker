@@ -24,4 +24,9 @@ const editOrder = async (req, res) => {
     .status(200)
     .json({ message: "orderiig amjilttai uurchilsun", record: putOrder });
 };
-module.exports = { getOrders, createOrder, editOrder };
+const deleteOrder = async (req, res) => {
+  const { id } = req.params;
+  const deleteOrder = await sql`DELETE FROM recorduud WHERE id=${id};`;
+  res.status(204).json({ message: "amjilttai ustgasan", record: deleteOrder });
+};
+module.exports = { getOrders, createOrder, editOrder, deleteOrder };
