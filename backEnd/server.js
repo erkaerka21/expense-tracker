@@ -19,7 +19,7 @@ app.use(cors()); //local host hedees ch handaj bolno widdleware. haanaas ch mani
 app.use(logger());
 
 app.use("/users", userRouter);
-app.use("/category", categoryRouter);
+app.use("/categoriud", categoryRouter);
 app.use("/orderuud", ordersRouter);
 app.use("/auth", authRouter);
 

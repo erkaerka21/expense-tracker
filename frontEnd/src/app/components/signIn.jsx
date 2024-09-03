@@ -1,14 +1,15 @@
 import React from "react";
+import Link from "next/link";
 
 const SignIn = () => {
   return (
     <div className="w-full h-screen bg-blue-600">
       <div className="w-1/2 h-screen bg-white flex flex-row justify-center items-center">
         <div className="w-1/2">
-          <div className="flex flex-row">
-            <img src="Vector.png" className="h-[3%]" />
+          <div className="flex flex-row justify-center items-center">
+            <img src="Vector.png" className="2xl:h-10" />
 
-            <p className="text-2xl font-extrabold">Geld</p>
+            <p className="text-3xl font-extrabold">Geld</p>
           </div>
           <div>
             <h1>
@@ -51,7 +52,7 @@ const SignIn = () => {
             Sign in
           </button>
           <p>
-            Don't have account? <a>Sign up</a>
+            Don't have account? <Link href={"./signUp"}>Sign up</Link>
           </p>
         </div>
       </div>
