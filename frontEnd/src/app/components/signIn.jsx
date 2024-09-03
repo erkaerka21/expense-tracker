@@ -2,12 +2,13 @@ import React from "react";
 
 const SignIn = () => {
   return (
-    <div className="w-full h-screen bg-blue-500">
-      <div className="w-1/2 h-screen bg-white">
-        <div>
+    <div className="w-full h-screen bg-blue-600">
+      <div className="w-1/2 h-screen bg-white flex flex-row justify-center items-center">
+        <div className="w-1/2">
           <div className="flex flex-row">
-            <img src="Vector.png" className="h-[25px]" />
-            Geld
+            <img src="Vector.png" className="h-[3%]" />
+
+            <p className="text-2xl font-extrabold">Geld</p>
           </div>
           <div>
             <h1>
@@ -42,9 +43,16 @@ const SignIn = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <input type="password" className="grow " placeholder="password" />
+              <input type="password" className="grow " placeholder="Password" />
             </label>
           </div>
+
+          <button className="bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center">
+            Sign in
+          </button>
+          <p>
+            Don't have account? <a>Sign up</a>
+          </p>
         </div>
       </div>
     </div>
