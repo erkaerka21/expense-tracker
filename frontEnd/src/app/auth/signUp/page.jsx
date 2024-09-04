@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const SignUp = () => {
+  const router = useRouter();
   return (
     <div>
       <div className="w-full h-screen bg-blue-600">
@@ -86,7 +89,7 @@ const SignUp = () => {
               Sign up
             </button>
             <p>
-              Already have account? <Link href={"./signIn"}>Sign in</Link>
+              Already have account? <Link href="/signIn">Sign in</Link>
             </p>
           </div>
         </div>

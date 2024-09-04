@@ -2,7 +2,7 @@ const sql = require("../config/db-user");
 
 const getCategory = async (req, res) => {
   const dataCategory = await sql`SELECT * FROM categoriud;`;
-  console.log("get category harah : ", dataCategory);
+  // console.log("get category harah : ", dataCategory);
   res
     .status(200)
     .json({ message: "get category amjilttai", category: dataCategory });

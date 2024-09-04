@@ -1,14 +1,16 @@
 const jsonWebToken = require("jsonwebtoken");
 
-exports.auth = (req, res, next) => {
-  //   console.log("нэвтэрсэн эсэхийг шалгах", next());
+const auth = (req, res, next) => {
   if (!req.headers.authorization) {
-    console.log(
-      "Зөвхөн нэвтэрсэн хэрэглэгч дараах үйлдлийг хийж болно.",
-      next()
-    );
+    res
+      .status(401)
+      .json({
+        message: "зөвхөн нэвтэрсэн хэрэглэгч дараах үйлдлийг хийж болно",
+      });
   }
   const token = req.headers.authorization.split(" ")[1];
   const user = jsonWebToken.verify(token, "TOKEN-PASS-!300420");
+  req.user = user;
   next();
 };
+module.exports = auth;

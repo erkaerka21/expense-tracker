@@ -31,9 +31,7 @@ const signIn = async (req, res) => {
         "TOKEN-PASS-!300420",
         { expiresIn: "1h" }
       );
-      res
-        .status(200)
-        .json({ message: "амжилттай нэвтрэх гэж байна", signInUser, token });
+      res.status(200).json({ message: "амжилттай нэвтрэх гэж байна", token });
     }
   }
 };

@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 const SignIn = () => {
+  const router = useRouter();
   return (
     <div className="w-full h-screen bg-blue-600">
       <div className="w-1/2 h-screen bg-white flex flex-row justify-center items-center">
@@ -51,9 +53,12 @@ const SignIn = () => {
           <button className="bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center">
             Sign in
           </button>
-          <p>
-            Don't have account? <Link href={"./signUp"}>Sign up</Link>
-          </p>
+          <div>
+            <p>Don't have account?</p>
+            <Link href="/signUp">
+              <button>Sign up</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
