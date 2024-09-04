@@ -1,10 +1,6 @@
 import Image from "next/image";
-import SignIn from "./auth/signIn/page";
+import SignIn from "./(auth)/signin/page";
 
 export default function Home() {
-  return (
-    <main>
-      <SignIn />
-    </main>
-  );
+  return <main>Нүүр хуудас</main>;
 }
