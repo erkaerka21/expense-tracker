@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { apiUrl } from "@/app/utils/util";
-
+import toast from "react-hot-toast";
 const SignUp = () => {
   const router = useRouter();
-
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -18,24 +17,25 @@ const SignUp = () => {
   const signUp = async () => {
     const { name, email, password, reEnterPassword } = userInfo;
     if (password !== reEnterPassword) {
-      return "нууц үгүүд хоорондоо тохирохгүй байна.";
+      toast.error("нууц үгүүд хоорондоо тохирохгүй байна.");
     }
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, {
         name,
         email,
         password,
-        reEnterPassword,
       });
 
       if (response.status === 201) {
-        return "амжилттай нэвтэрсэн";
+        toast.success("амжилттай бүртгэлээ");
         router.push("/signin");
       }
     } catch (error) {
-      return "нэвтрэхэд алдаа гарлаа";
+      console.error("Error to signing up", error);
+      toast.error("бүртгэхэд алдаа гарлаа, дахин оролдоно уу?");
     }
   };
+
   return (
     <div>
       <div className="w-full h-screen bg-blue-600">
@@ -66,6 +66,7 @@ const SignUp = () => {
                   type="text"
                   className="grow"
                   placeholder="Name"
+                  value={userInfo.name}
                   onChange={(e) =>
                     setUserInfo({ ...userInfo, name: e.target.value })
                   }
@@ -85,6 +86,7 @@ const SignUp = () => {
                   type="text"
                   className="grow"
                   placeholder="Email"
+                  value={userInfo.email}
                   onChange={(e) =>
                     setUserInfo({ ...userInfo, email: e.target.value })
                   }
@@ -108,6 +110,7 @@ const SignUp = () => {
                   type="password"
                   className="grow "
                   placeholder="Password"
+                  value={userInfo.password}
                   onChange={(e) =>
                     setUserInfo({ ...userInfo, password: e.target.value })
                   }
@@ -130,6 +133,7 @@ const SignUp = () => {
                   type="password"
                   className="grow "
                   placeholder="re-enter password"
+                  value={userInfo.reEnterPassword}
                   onChange={(e) =>
                     setUserInfo({
                       ...userInfo,
@@ -141,7 +145,7 @@ const SignUp = () => {
             </div>
 
             <button
-              className="bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center"
+              className="btn bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center"
               onClick={signUp}
             >
               Sign up
