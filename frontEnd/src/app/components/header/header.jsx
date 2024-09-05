@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ userData }) => {
   return (
     <div>
       <div>
@@ -10,7 +10,7 @@ const Header = () => {
       </div>
       <div>
         <button className="bg-blue-600 text-white font-medium">+ Record</button>
-        <p></p>
+        <p>{userData.name}</p>
         <img />
       </div>
     </div>

@@ -35,7 +35,7 @@ const SignUp = () => {
       toast.error("бүртгэхэд алдаа гарлаа, дахин оролдоно уу?");
     }
   };
-
+  console.log(userInfo);
   return (
     <div>
       <div className="w-full h-screen bg-blue-600">
