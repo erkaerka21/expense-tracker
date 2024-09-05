@@ -1,8 +1,8 @@
 import React from "react";
 
-const Header = ({ userData }) => {
+export const Header = ({ userData }) => {
   return (
-    <div>
+    <header>
       <div>
         <img src="Vector.png" alt="logo" />
         <h1>Dashboard</h1>
@@ -10,11 +10,9 @@ const Header = ({ userData }) => {
       </div>
       <div>
         <button className="bg-blue-600 text-white font-medium">+ Record</button>
-        <p>{userData.name}</p>
+        <p className="text-black">{userData.name}</p>
         <img />
       </div>
-    </div>
+    </header>
   );
 };
-
-export default Header;

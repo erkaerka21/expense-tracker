@@ -3,9 +3,10 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../utils/util";
+
 export const UserContext = createContext();
 
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({
     id: "",
     name: "",
@@ -16,14 +17,14 @@ const UserProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(`${apiUrl}/users/profile`, {
-        headers: { Authorization: `bearer${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {
         setUserData(response.data);
         console.error("user info", response.data);
       }
     } catch (error) {
-      console.log("cannot fetching user data", error);
+      console.error("cannot fetching user data", error);
     }
   };
   return (
@@ -32,4 +33,3 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-export default UserProvider;
