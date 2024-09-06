@@ -1,8 +1,9 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../context/user-context";
+import { UserContext, UserProvider } from "../context/user-context";
 import { useRouter } from "next/navigation";
 import { Header } from "../components";
+import toast from "react-hot-toast";
 
 const LayoutDashboard = ({ children }) => {
   const { userData, fetchUserData } = useContext(UserContext);
@@ -10,9 +11,14 @@ const LayoutDashboard = ({ children }) => {
   useEffect(() => {
     fetchUserData();
   }, []);
+  const signOut = () => {
+    localStorage.removeItem("token");
+    toast.success("Системээс гарлаа");
+    router.push("/signin");
+  };
   return (
     <div>
-      <Header userData={userData.name} />
+      <Header userData={userData.name} signOut={signOut} />
       {children}
     </div>
   );

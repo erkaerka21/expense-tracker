@@ -1,17 +1,29 @@
+import Link from "next/link";
 import React from "react";
+import { FaPlus } from "react-icons/fa";
 
-export const Header = ({ userData }) => {
+export const Header = ({ userData, signOut }) => {
   return (
-    <header>
-      <div>
-        <img src="Vector.png" alt="logo" />
+    <header className="flex flex-row justify-between">
+      <div className="flex flex-row">
+        <img src="Vector.png" alt="logo" className="h-8" />
+        {/* <Link> */}
         <h1>Dashboard</h1>
+        {/* </Link> */}
+        {/* <Link> */}
         <h1>Records</h1>
+        {/* </Link> */}
       </div>
-      <div>
-        <button className="bg-blue-600 text-white font-medium">+ Record</button>
-        <p className="text-black">{userData.name}</p>
-        <img />
+      <div className="flex flex-row">
+        <button className="btn bg-blue-600 text-white font-medium flex flex-row rounded-3xl">
+          <FaPlus />
+          Record
+        </button>
+        <p className="text-black text-8xl">{userData?.name}</p>
+        <img className="rounded-full h-4 w-4" />
+        <button className="btn" onClick={signOut}>
+          Logout
+        </button>
       </div>
     </header>
   );

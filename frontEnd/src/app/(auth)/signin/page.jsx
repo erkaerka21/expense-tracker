@@ -19,7 +19,7 @@ const SignIn = () => {
       if (response.status === 200) {
         toast.success("амжилттай нэвтэрлээ");
         const { token } = response.data;
-        localStorage.setItem({ token }, token);
+        localStorage.setItem("token", token);
         router.push("/dashboard");
       }
     } catch (error) {
