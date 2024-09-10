@@ -1,8 +1,10 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { FaPlus } from "react-icons/fa";
+import { UserContext } from "../context/user-context";
 
-export const Header = ({ userData, signOut }) => {
+export const Header = ({ signOut }) => {
+  const { userData } = useContext(UserContext);
   return (
     <header className="flex flex-row justify-between">
       <div className="flex flex-row">

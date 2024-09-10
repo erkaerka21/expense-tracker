@@ -1,16 +1,16 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { apiUrl } from "../utils/util";
+import { apiUrl } from "../../utils/util";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({
-    id: "",
     name: "",
     email: "",
+    password: "",
     avatar_img: "",
   });
   const fetchUserData = async () => {
@@ -27,6 +27,11 @@ export const UserProvider = ({ children }) => {
       console.error("cannot fetching user data", error);
     }
   };
+  useEffect(() => {
+    if (!userData) {
+    }
+    fetchUserData;
+  }, [userData]);
   return (
     <UserContext.Provider value={{ userData, fetchUserData }}>
       {children}

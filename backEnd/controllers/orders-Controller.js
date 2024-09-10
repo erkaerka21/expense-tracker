@@ -29,4 +29,19 @@ const deleteOrder = async (req, res) => {
   const deleteOrder = await sql`DELETE FROM recorduud WHERE id=${id};`;
   res.status(204).json({ message: "amjilttai ustgasan", record: deleteOrder });
 };
-module.exports = { getOrders, createOrder, editOrder, deleteOrder };
+const getRecordinfo = async (req, res) => {
+  try {
+    const [inc, exp] =
+      await sql`SELECT transaction_type, SUM(amount) FROM recorduud GROUP BY transaction_type;`;
+    res.status(200).json({ inc, exp });
+  } catch (error) {
+    res.status(400).json({ message: "failed" });
+  }
+};
+module.exports = {
+  getOrders,
+  createOrder,
+  editOrder,
+  deleteOrder,
+  getRecordinfo,
+};

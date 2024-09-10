@@ -3,15 +3,18 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { apiUrl } from "@/app/utils/util";
+import { apiUrl } from "@/utils/util";
 import { useState } from "react";
 import toast from "react-hot-toast";
 const SignIn = () => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
   const logIn = async () => {
     const { email, password } = userInfo;
     try {
+      setIsLoading(true);
+
       const response = await axios.post(`${apiUrl}/auth/signin`, {
         email,
         password,
@@ -22,8 +25,10 @@ const SignIn = () => {
         localStorage.setItem("token", token);
         router.push("/dashboard");
       }
+      setIsLoading(false);
     } catch (error) {
       console.error("нууц үг эсвэл цахим шуудангийн хаяг буруу байна.", error);
+      // setIsLoading(true);
       toast.error(
         "нууц үг эсвэл цахим шуудангийн хаяг буруу байна, дахин оролдоно уу?"
       );
@@ -95,7 +100,11 @@ const SignIn = () => {
             className="btn bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center"
             onClick={logIn}
           >
-            Sign in
+            {isLoading ? (
+              "Sign in"
+            ) : (
+              <span className="loading loading-spinner"></span>
+            )}
           </button>
           <div>
             <p>Don't have account?</p>

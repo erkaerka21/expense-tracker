@@ -18,7 +18,7 @@ const LayoutDashboard = ({ children }) => {
   };
   return (
     <div>
-      <Header userData={userData.name} signOut={signOut} />
+      <Header userData={userData} signOut={signOut} />
       {children}
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { apiUrl } from "@/app/utils/util";
+import { apiUrl } from "@/utils/util";
 import toast from "react-hot-toast";
 const SignUp = () => {
   const router = useRouter();
@@ -13,13 +13,17 @@ const SignUp = () => {
     password: "",
     reEnterPassword: "",
   });
+  const [load, setLoad] = useState(true);
 
   const signUp = async () => {
     const { name, email, password, reEnterPassword } = userInfo;
     if (password !== reEnterPassword) {
+      setLoad(false);
       toast.error("нууц үгүүд хоорондоо тохирохгүй байна.");
+      setLoad(true);
     }
     try {
+      setLoad(false);
       const response = await axios.post(`${apiUrl}/auth/signup`, {
         name,
         email,
@@ -30,8 +34,10 @@ const SignUp = () => {
         toast.success("амжилттай бүртгэлээ");
         router.push("/signin");
       }
+      setLoad(true);
     } catch (error) {
       console.error("Error to signing up", error);
+      setLoad(false);
       toast.error("бүртгэхэд алдаа гарлаа, дахин оролдоно уу?");
     }
   };
@@ -148,7 +154,11 @@ const SignUp = () => {
               className="btn bg-blue-600 text-white font-medium py-2.5 rounded-3xl w-full text-center"
               onClick={signUp}
             >
-              Sign up
+              {load ? (
+                "Sign up"
+              ) : (
+                <span className="loading loading-spinner">Уншиж байна</span>
+              )}
             </button>
             <p>
               Already have account? <Link href="/signin">Sign in</Link>
