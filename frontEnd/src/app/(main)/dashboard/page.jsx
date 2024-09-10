@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/user-context";
+import { UserContext } from "../../context/user-context";
 import { apiUrl } from "@/utils/util";
+import axios from "axios";
 
 const Dashboard = () => {
   const { userData } = useContext(UserContext);
@@ -31,12 +32,12 @@ const Dashboard = () => {
         </div>
         <div className="w-full h-[30vh] bg-green-200 rounded-3xl">
           <h1>Total income</h1>
-          <h1>{cartData?.inc.sum}</h1>
+          <h1 className="text-5xl font-extrabold">{cartData?.inc.sum}₮</h1>
           <h2>Your income account</h2>
         </div>
         <div className="w-full h-[30vh] bg-pink-200 rounded-3xl">
           <h1>Total expences</h1>
-          <h1 className="text-5xl font-extrabold"></h1>
+          <h1 className="text-5xl font-extrabold">{cartData?.exp.sum}₮</h1>
           <h2>Your expence account</h2>
         </div>
       </div>

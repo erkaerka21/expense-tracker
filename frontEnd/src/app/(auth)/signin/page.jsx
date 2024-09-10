@@ -13,13 +13,12 @@ const SignIn = () => {
   const logIn = async () => {
     const { email, password } = userInfo;
     try {
-      setIsLoading(true);
-
       const response = await axios.post(`${apiUrl}/auth/signin`, {
         email,
         password,
       });
       if (response.status === 200) {
+        setIsLoading(true);
         toast.success("амжилттай нэвтэрлээ");
         const { token } = response.data;
         localStorage.setItem("token", token);
