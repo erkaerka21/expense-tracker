@@ -41,12 +41,12 @@ const getRecordinfo = async (req, res) => {
 
 const getChartData = async (req, res) => {
   try {
-    const DuguiChartData = await sql`
+    const duguiChartData = await sql`
       SELECT SUM(r.amount), c.name cat_name FROM recorduud r 
       INNER JOIN categoriud c ON r.cid=c.id 
       WHERE r.transaction_type='EXP' 
       GROUP BY cat_name;`;
-    res.status(200).json({ DuguiChartData });
+    res.status(200).json({ duguiChartData });
   } catch (error) {
     res.status(400).json({ message: "amjiltgui" });
   }

@@ -4,12 +4,21 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/user-context";
 import { apiUrl } from "@/utils/util";
 import axios from "axios";
+import Duguichart from "@/app/components/dashboard/Duguichart";
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
+} from "chart.js";
 
 const Dashboard = () => {
   const { userData } = useContext(UserContext);
   const [cartData, setCartData] = useState(null);
   const [getRecord, setGetRecord] = useState([]);
-
+  Chart.register(ArcElement);
   const getCartDataInfo = async () => {
     try {
       const res = await axios.get(`${apiUrl}/orderuud/info`);
@@ -24,6 +33,7 @@ const Dashboard = () => {
   useEffect(() => {
     getCartDataInfo();
   }, [userData]);
+
   return (
     <div className="mt-6">
       <div className="grid grid-cols-3 gap-x-4">
@@ -41,7 +51,9 @@ const Dashboard = () => {
           <h2>Your expence account</h2>
         </div>
       </div>
-      <div></div>
+      <div>
+        <Duguichart />
+      </div>
       <div></div>
     </div>
   );

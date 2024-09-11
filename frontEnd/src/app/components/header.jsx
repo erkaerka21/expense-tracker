@@ -31,3 +31,30 @@ export const Header = ({ userData, signOut }) => {
     </header>
   );
 };
+
+// const [duguiData, setDuguiData] = useState(null);
+
+//   const getDuguiChart = async () => {
+//     try {
+//       const response = await axios.get(`${apiUrl}/orderuud/chartinfo`);
+//       console.log(
+//         "dugui graphiciin datanuud===>",
+//         response.data.duguiChartData
+//       );
+//       setDuguiData(response.data.duguiChartData);
+//       console.log("FINISHED");
+//     } catch (error) {
+//       console.error("amjiltgui", error);
+//       toast.error("amjiltgui");
+//     }
+//   };
+
+//   const change = () => {
+//     console.log("first");
+//     setDuguiData({ name: "SSS" });
+//     toast.success("HH");
+//   };
+
+//   useEffect(() => {
+//     getDuguiChart();
+//   }, []);
