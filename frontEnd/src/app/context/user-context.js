@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { apiUrl } from "../../utils/util";
+import { apiUrl } from "@/utils/util";
 
 export const UserContext = createContext();
 
@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (!userData) {
     }
-    fetchUserData;
+    fetchUserData();
   }, [userData]);
   return (
     <UserContext.Provider value={{ userData, fetchUserData }}>

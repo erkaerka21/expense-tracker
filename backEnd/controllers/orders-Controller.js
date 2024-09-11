@@ -38,10 +38,24 @@ const getRecordinfo = async (req, res) => {
     res.status(400).json({ message: "failed" });
   }
 };
+
+const getChartData = async (req, res) => {
+  try {
+    const DuguiChartData = await sql`
+      SELECT SUM(r.amount), c.name cat_name FROM recorduud r 
+      INNER JOIN categoriud c ON r.cid=c.id 
+      WHERE r.transaction_type='EXP' 
+      GROUP BY cat_name;`;
+    res.status(200).json({ DuguiChartData });
+  } catch (error) {
+    res.status(400).json({ message: "amjiltgui" });
+  }
+};
 module.exports = {
   getOrders,
   createOrder,
   editOrder,
   deleteOrder,
   getRecordinfo,
+  getChartData,
 };

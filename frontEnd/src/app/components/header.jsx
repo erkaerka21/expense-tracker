@@ -1,10 +1,11 @@
+"use client";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FaPlus } from "react-icons/fa";
 import { UserContext } from "../context/user-context";
 
-export const Header = ({ signOut }) => {
-  const { userData } = useContext(UserContext);
+export const Header = ({ userData, signOut }) => {
+  console.log("userdatanuudiig harah", userData);
   return (
     <header className="flex flex-row justify-between">
       <div className="flex flex-row">

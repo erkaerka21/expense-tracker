@@ -23,8 +23,8 @@ const SignIn = () => {
         const { token } = response.data;
         localStorage.setItem("token", token);
         router.push("/dashboard");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     } catch (error) {
       console.error("нууц үг эсвэл цахим шуудангийн хаяг буруу байна.", error);
       // setIsLoading(true);

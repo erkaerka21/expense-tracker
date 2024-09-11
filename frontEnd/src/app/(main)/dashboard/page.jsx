@@ -22,7 +22,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getCartDataInfo;
+    getCartDataInfo();
   }, [userData]);
   return (
     <div className="mt-6">
@@ -31,13 +31,13 @@ const Dashboard = () => {
           <img src="R.png" className="rounded-3xl" />
         </div>
         <div className="w-full h-[30vh] bg-green-200 rounded-3xl">
-          <h1>Total income</h1>
+          <h1>Нийт орлого</h1>
           <h1 className="text-5xl font-extrabold">{cartData?.inc.sum}₮</h1>
           <h2>Your income account</h2>
         </div>
         <div className="w-full h-[30vh] bg-pink-200 rounded-3xl">
-          <h1>Total expences</h1>
-          <h1 className="text-5xl font-extrabold">{cartData?.exp.sum}₮</h1>
+          <h1>Нийт зарлага</h1>
+          <h1 className="text-5xl font-extrabold">-{cartData?.exp.sum}₮</h1>
           <h2>Your expence account</h2>
         </div>
       </div>
