@@ -13,12 +13,15 @@ import {
   Legend,
   LinearScale,
 } from "chart.js";
+import Barchart from "@/app/components/dashboard/Barchart";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
+  Chart.register(ArcElement, BarElement, CategoryScale, Legend, LinearScale);
   const { userData } = useContext(UserContext);
   const [cartData, setCartData] = useState(null);
-  const [getRecord, setGetRecord] = useState([]);
-  Chart.register(ArcElement);
+  const [getRecords, setGetRecords] = useState([]);
+
   const getCartDataInfo = async () => {
     try {
       const res = await axios.get(`${apiUrl}/orderuud/info`);
@@ -30,8 +33,20 @@ const Dashboard = () => {
     }
   };
 
+  const getCartGuilgee = async () => {
+    try {
+      const respo = await axios.get(`${apiUrl}/orderuud`);
+      console.log("cartnii guilgeenuudiig harah : ", respo.data.recordList);
+      setGetRecords(respo.data.recordList);
+    } catch (error) {
+      toast.error("amjiltgui");
+      console.error("cartnii guilgeenuud amjiltgui", error);
+    }
+  };
+
   useEffect(() => {
     getCartDataInfo();
+    getCartGuilgee();
   }, [userData]);
 
   return (
@@ -52,9 +67,19 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
+        <Barchart />
         <Duguichart />
       </div>
-      <div></div>
+      <div>
+        {getRecords.map((record) => (
+          <div className="flex flex-row">
+            <div>{record.name}</div>
+            <div>{record.description}</div>
+            <div>{record.amount}</div>
+            <div>{record.transaction_type}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

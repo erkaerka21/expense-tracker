@@ -1,10 +1,16 @@
 const sql = require("../config/db-user");
 
 const getOrders = async (req, res) => {
-  const watchOrders = await sql`SELECT * FROM recorduud`;
-  res
-    .status(200)
-    .json({ message: "recorduud haragdaj baina", record: watchOrders });
+  try {
+    const watchOrders = await sql`SELECT * FROM recorduud`;
+    const recordList =
+      await sql`SELECT name, description, amount, transaction_type FROM recorduud;`;
+    res
+      .status(200)
+      .json({ message: "recorduud haragdaj baina", watchOrders, recordList });
+  } catch (error) {
+    res.status(400).json({ message: "amjiltgui" });
+  }
 };
 const createOrder = async (req, res) => {
   const { uid, cid, name, amount, transaction_type, description } = req.body;
@@ -46,7 +52,14 @@ const getChartData = async (req, res) => {
       INNER JOIN categoriud c ON r.cid=c.id 
       WHERE r.transaction_type='EXP' 
       GROUP BY cat_name;`;
-    res.status(200).json({ duguiChartData });
+    const barChartData = await sql`
+      SELECT TO_CHAR(DATE_TRUNC('month', r.created_at), 'Mon') as sar, 
+      SUM(CASE WHEN r.transaction_type='EXP' THEN r.amount ELSE 0 END) AS total_exp, 
+      SUM(CASE WHEN r.transaction_type='INC' THEN r.amount ELSE 0 END) AS total_inc
+      FROM recorduud AS r 
+      GROUP BY DATE_TRUNC('month', r.created_at) 
+      ORDER BY DATE_TRUNC('month', r.created_at);`;
+    res.status(200).json({ duguiChartData, barChartData });
   } catch (error) {
     res.status(400).json({ message: "amjiltgui" });
   }
