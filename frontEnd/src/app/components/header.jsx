@@ -10,12 +10,12 @@ export const Header = ({ userData, signOut }) => {
     <header className="flex flex-row justify-between">
       <div className="flex flex-row">
         <img src="Vector.png" alt="logo" className="h-8" />
-        {/* <Link> */}
-        <h1>Dashboard</h1>
-        {/* </Link> */}
-        {/* <Link> */}
-        <h1>Records</h1>
-        {/* </Link> */}
+        <Link href="/dashboard">
+          <h1>Dashboard</h1>
+        </Link>
+        <Link href="/recorduud">
+          <h1>Records</h1>
+        </Link>
       </div>
       <div className="flex flex-row">
         <button className="btn bg-blue-600 text-white font-medium flex flex-row rounded-3xl">
