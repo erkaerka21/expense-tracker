@@ -1,28 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { apiUrl } from "@/utils/util";
 import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import toast from "react-hot-toast";
+import { DashboardContext } from "@/app/context/dashboard-context";
 
 const Duguichart = () => {
-  const [duguiDataChart, setDuguiDataChart] = useState(null);
-  const getDuguiChartData = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/orderuud/chartinfo`);
-      console.log(
-        "dugui graphiciin datanuudiig harah : ",
-        response.data.duguiChartData
-      );
-      setDuguiDataChart(response.data.duguiChartData);
-    } catch (error) {
-      toast.error("amjiltgui");
-      console.error("amjiltgui", error);
-    }
-  };
+  const { duguichart } = useContext(DashboardContext);
 
-  const data = duguiDataChart?.map((d) => d.sum);
-  const lBL = duguiDataChart?.map((d) => d.cat_name);
+  const data = duguichart?.map((d) => d.sum);
+  const lBL = duguichart?.map((d) => d.cat_name);
 
   const dataD = {
     datasets: [
@@ -59,9 +47,6 @@ const Duguichart = () => {
     },
   };
 
-  useEffect(() => {
-    getDuguiChartData();
-  }, []);
   return (
     <div>
       {/* <button onClick={change}>dd</button> */}

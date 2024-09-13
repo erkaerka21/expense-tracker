@@ -15,12 +15,13 @@ import {
 } from "chart.js";
 import Barchart from "@/app/components/dashboard/Barchart";
 import toast from "react-hot-toast";
+import { RecorduudContext } from "@/app/context/recorduud-context";
 
 const Dashboard = () => {
   Chart.register(ArcElement, BarElement, CategoryScale, Legend, LinearScale);
   const { userData } = useContext(UserContext);
   const [cartData, setCartData] = useState(null);
-  const [getRecords, setGetRecords] = useState([]);
+  const { recs } = useContext(RecorduudContext);
 
   const getCartDataInfo = async () => {
     try {
@@ -33,20 +34,8 @@ const Dashboard = () => {
     }
   };
 
-  const getCartGuilgee = async () => {
-    try {
-      const respo = await axios.get(`${apiUrl}/orderuud`);
-      console.log("cartnii guilgeenuudiig harah : ", respo.data.recordList);
-      setGetRecords(respo.data.recordList);
-    } catch (error) {
-      toast.error("amjiltgui");
-      console.error("cartnii guilgeenuud amjiltgui", error);
-    }
-  };
-
   useEffect(() => {
     getCartDataInfo();
-    getCartGuilgee();
   }, [userData]);
 
   return (
@@ -71,7 +60,7 @@ const Dashboard = () => {
         <Duguichart />
       </div>
       <div>
-        {getRecords.map((record) => (
+        {recs?.map((record) => (
           <div className="flex flex-row">
             <div>{record.name}</div>
             <div>{record.description}</div>

@@ -2,12 +2,12 @@ const sql = require("../config/db-user");
 
 const getOrders = async (req, res) => {
   try {
-    const watchOrders = await sql`SELECT * FROM recorduud`;
     const recordList =
       await sql`SELECT name, description, amount, transaction_type FROM recorduud;`;
-    res
-      .status(200)
-      .json({ message: "recorduud haragdaj baina", watchOrders, recordList });
+    res.status(200).json({
+      message: "recorduud haragdaj baina",
+      recorduud: recordList,
+    });
   } catch (error) {
     res.status(400).json({ message: "amjiltgui" });
   }
@@ -59,7 +59,7 @@ const getChartData = async (req, res) => {
       FROM recorduud AS r 
       GROUP BY DATE_TRUNC('month', r.created_at) 
       ORDER BY DATE_TRUNC('month', r.created_at);`;
-    res.status(200).json({ duguiChartData, barChartData });
+    res.status(200).json({ dugui: duguiChartData, bar: barChartData });
   } catch (error) {
     res.status(400).json({ message: "amjiltgui" });
   }
