@@ -23,6 +23,9 @@ app.use("/categoriud", categoryRouter);
 app.use("/orderuud", ordersRouter);
 app.use("/auth", authRouter);
 
+app.get("/", (_, res) => {
+  res.send("welcome expense tracker API");
+});
 app.listen(PORT, () => {
   console.log(`server iin ajillaj bga host ${PORT}`);
 });

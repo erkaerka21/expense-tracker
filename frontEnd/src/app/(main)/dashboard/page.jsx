@@ -60,12 +60,12 @@ const Dashboard = () => {
         <Duguichart />
       </div>
       <div>
-        {recs?.map((record) => (
+        {recs?.map((rec) => (
           <div className="flex flex-row">
-            <div>{record.name}</div>
-            <div>{record.description}</div>
-            <div>{record.amount}</div>
-            <div>{record.transaction_type}</div>
+            <div>{rec.name}</div>
+            <div>{rec.description}</div>
+            <div>{rec.amount}</div>
+            <div>{rec.transaction_type}</div>
           </div>
         ))}
       </div>

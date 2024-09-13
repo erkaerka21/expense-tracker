@@ -27,8 +27,8 @@ export const RecorduudProvider = ({ children }) => {
     getRecordData();
   }, []);
   return (
-    <RecorduudProvider value={{ recs: recorduudData?.recs }}>
+    <RecorduudContext.Provider value={{ recs: recorduudData.recs }}>
       {children}
-    </RecorduudProvider>
+    </RecorduudContext.Provider>
   );
 };
